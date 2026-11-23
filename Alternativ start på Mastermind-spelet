@@ -1,0 +1,36 @@
+import random as rand
+
+# Det slumpas fram en random 4-siffrig kod med tal mellan 1 och 6 och använder spelarens valda svårighetsgrad.
+def slumpad_kod(vald_svarighet):
+    slumpad_kod = ""
+    if vald_svarighet == "1":
+        while len(slumpad_kod) < 4:
+            siffra = rand.randint(1, 6)
+
+            if str(siffra) not in slumpad_kod:
+                slumpad_kod += str(siffra)
+
+        return slumpad_kod
+    elif vald_svarighet == "2":
+        for i in range(4):
+            siffra = rand.randint(1, 6)
+            slumpad_kod = slumpad_kod + str(siffra)
+        return slumpad_kod   
+
+def checka_användarens_gissning(användarens_gissning):
+    for tal in range(len(användarens_gissning)):
+        if användarens_gissning[tal] in slumpad_kod:
+            
+        else:
+            print(" ")
+    
+# Programmet berättar reglerna för spelaren och frågar efter önskad svårighetsnivå
+print("Datorn kommer att slumpa fram en kod på fyra siffror mellan 1 och 6.\nDu ska försöka gissa denna kods siffror på max 12 drag.\nEfter respektive gissning så kommer du att få en respons\nFör varje gissad korrekt siffra på korrekt plats i koden: ☑\nFör varje gissad korrekt siffra på fel plats i koden: ☐\nFör det siffror som inte finns med i koden ges ingen markering.\n\nExempel: om den slumpade koden är 2315\noch du gissar 3165\nså blir responsen ☑☐☐\n\nDu får välja mellan två svårighetsnivåer:\nLättare nivå: Alla siffror är garanterat olika\nSvårare nivå: Det kan finnas upprepningar av en eller flera siffor\n")
+spelarens_svårighetsnivå = input("Ange önskad nivå: Lättare(1), svårare (2) --> ")
+
+
+def main():
+    antal_gissningar = 0
+    
+    while antal_gissningar <= 12:
+        användarens_gissning = input("Skriv en 4-siffrig kod")
